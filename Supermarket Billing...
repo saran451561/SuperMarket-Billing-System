@@ -1,0 +1,55 @@
+class Supermarket:
+    def __init__(self):
+        self.items = {}
+
+    def add_item(self, name, price):
+        self.items[name] = price
+
+    def remove_item(self, name):
+        if name in self.items:
+            del self.items[name]
+
+    def display_items(self):
+        for name, price in self.items.items():
+            print(f"{name}: ${price}")
+
+    def calculate_bill(self):
+        total = 0
+        for name, price in self.items.items():
+            quantity = int(input(f"Enter quantity of {name}: "))
+            total += price * quantity
+        print(f"Total bill: ${total}")
+
+
+def main():
+    supermarket = Supermarket()
+
+    while True:
+        print("\n1. Add item")
+        print("2. Remove item")
+        print("3. Display items")
+        print("4. Calculate bill")
+        print("5. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            name = input("Enter item name: ")
+            price = float(input("Enter item price: "))
+            supermarket.add_item(name, price)
+        elif choice == "2":
+            name = input("Enter item name: ")
+            supermarket.remove_item(name)
+        elif choice == "3":
+            supermarket.display_items()
+        elif choice == "4":
+            supermarket.calculate_bill()
+        elif choice == "5":
+            print("----<-Thank You->----")
+            break 
+        else:
+            print("Invalid option. Please choose again.")
+
+
+if __name__ == "__main__":
+    main()
